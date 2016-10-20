@@ -1,3 +1,4 @@
+type optee_data_file, file_type, data_file_type;
 # init.hikey.usb.rc writes to /config/* to set up USB
 allow init configfs:dir create_dir_perms;
 allow init configfs:file write;
