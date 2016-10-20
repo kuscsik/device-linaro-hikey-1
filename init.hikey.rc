@@ -1,4 +1,5 @@
 import init.hikey.usb.rc
+import init.optee.rc
 
 on init
     # mount debugfs
@@ -17,9 +18,12 @@ on fs
 
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
+    mkdir /data/tee/ 0770 system drmrpc
+    mkdir /data/tee/optee_armtz 0770 system drmrpc
     mkdir /data/misc/gatord 0700 root root
     # Set SELinux security contexts for files used by lava.
     restorecon_recursive /data/local/tmp/lava
+    restorecon_recursive /data/tee
 
 on post-fs
 

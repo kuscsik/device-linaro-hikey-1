@@ -1,0 +1,5 @@
+allow tee system_data_file:dir write;
+allow tee system_data_file:dir add_name;
+allow tee system_data_file:dir create;
+allow tee optee_data_file:dir create_dir_perms;
+allow tee optee_data_file:file  { rename setattr getattr link create rw_file_perms create_file_perms };
