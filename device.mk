@@ -65,6 +65,26 @@ PRODUCT_PACKAGES += libion
 # Build gralloc for hikey
 PRODUCT_PACKAGES += gralloc.hikey
 
+OPTEE_PLATFORM ?= hikey
+OPTEE_CFG_ARM64_CORE ?= y
+OPTEE_TA_TARGETS ?= ta_arm64
+OPTEE_OS_DIR ?= device/linaro/bootloader/optee_os
+BUILD_OPTEE_MK := $(OPTEE_OS_DIR)/mk/aosp_optee.mk
+
+ifeq ($(TARGET_TEE_IS_OPTEE), true)
+
+PRODUCT_COPY_FILES += \
+    device/linaro/hikey/init.optee.rc:root/init.optee.rc
+
+
+# OPTEE user space
+PRODUCT_PACKAGES += libteec \
+                    tee-supplicant \
+
+BOARD_SEPOLICY_UNION += init_optee.te
+
+endif
+
 # Set zygote config
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc

@@ -1,0 +1,9 @@
+on post-fs
+
+service tee_supplicant /system/bin/tee-supplicant
+    class main
+    user root
+    group shell
+    oneshot
+
+

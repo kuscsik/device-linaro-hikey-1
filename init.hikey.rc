@@ -1,4 +1,5 @@
 import init.hikey.usb.rc
+import init.optee.rc
 
 on init
     # mount debugfs
